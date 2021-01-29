@@ -8,7 +8,8 @@ get_FINSdata(
   module = c("Trapping", "Release", "Spawning"),
   scope = c("NPT", "FINS Domain"),
   startDate,
-  endDate
+  endDate,
+  api_key
 )
 }
 \arguments{
@@ -19,13 +20,15 @@ get_FINSdata(
 \item{startDate}{query start date formatted as month, day, year; '01/01/2019'}
 
 \item{endDate}{query end date formatted as month, day, year; '01/01/2020'}
+
+\item{api_key}{access key supplied from FINS development team.}
 }
 \value{
 a data frame of all returned data from FINS query
 }
 \description{
 \code{get_FINSdata} downloads FINS data from their API using an
-  NPT specific api key. The function can access data from three FINS modules;
-  'Trapping', 'Release' and 'Spawning'. The user can also specify if only NPT
-  data is required or the full dataset from FINS.
+NPT specific api key. The function can access data from three FINS modules;
+'Trapping', 'Release' and 'Spawning'. The user can also specify if only NPT
+data is required or the full dataset from FINS.
 }

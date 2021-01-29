@@ -9,6 +9,7 @@
 #' @param scope download NPT data only or the full FINS domain
 #' @param startDate query start date formatted as month, day, year; '01/01/2019'
 #' @param endDate query end date formatted as month, day, year; '01/01/2020'
+#' @param api_key access key supplied from FINS development team.
 #'
 #' @return a data frame of all returned data from FINS query
 #' @import httr
@@ -16,7 +17,8 @@
 #'
 get_FINSdata <- function(module = c('Trapping', 'Release', 'Spawning'),
                             scope = c('NPT','FINS Domain'),
-                            startDate, endDate){
+                            startDate, endDate,
+                         api_key){
 
   stopifnot(!is.na(startDate)|
             !is.na(endDate)|
@@ -44,10 +46,10 @@ get_FINSdata <- function(module = c('Trapping', 'Release', 'Spawning'),
 
 
   # build query for FINS
-  queryList = list(apikey = 'cGsvN7QlsSj0Uiy2kOLECQ8UsNhdt2bj',#apikey,
-                   startDate = startDate,#
+  queryList = list(apikey = api_key,
+                   startDate = startDate,
                    endDate = endDate,
-                   scope = scope)#
+                   scope = scope)
 
   # send query to FINS
   httr::modify_url(url_req, query = queryList)

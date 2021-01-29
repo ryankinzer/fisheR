@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+R/fins_key.R
+man/fins_key.Rd
