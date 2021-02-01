@@ -24,7 +24,7 @@
 #' queryPITtagAdult(spawn_yr = 2015)
 
 get_PITobs = function(query_type = c('obs_site', 'release_site'),
-                         obs_site = c('GRA','B2A','GRJ GRS'), # many others
+                         obs_site = c('GRA','B2A','GRJ'), # many others
                          release_site = NULL,
                          species = c('Chinook', 'Coho', 'Steelhead', 'Sockeye'),
                          run = c('All', 'Spring', 'Summer', 'Fall', 'Winter', 'Unknown'),
