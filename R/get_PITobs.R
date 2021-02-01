@@ -24,7 +24,7 @@
 #' queryPITtagAdult(spawn_yr = 2015)
 
 get_PITobs = function(query_type = c('obs_site', 'release_site'),
-                         obs_site = c('GRA','B2A'), # many others
+                         obs_site = c('GRA','B2A','GRJ GRS'), # many others
                          release_site = NULL,
                          species = c('Chinook', 'Coho', 'Steelhead', 'Sockeye'),
                          run = c('All', 'Spring', 'Summer', 'Fall', 'Winter', 'Unknown'),
@@ -61,9 +61,10 @@ get_PITobs = function(query_type = c('obs_site', 'release_site'),
     }
 
   # match up site code with site name
-  obs_code_df <- data.frame(site = c('GRA', 'B2A'),
+  obs_code_df <- data.frame(site = c('GRA', 'B2A', 'GRJ'),
                              code = c('GRA:Lower Granite Dam Adult Fishway (GRA) rkm 522.173',
-                                      'B2A:Bonneville Dam Adult Fishways (B2A BO1 BO2 BO3 BO4 BWL) rkm 234'))
+                                      'B2A:Bonneville Dam Adult Fishways (B2A BO1 BO2 BO3 BO4 BWL) rkm 234',
+                                      'LWG:Lower Granite Juvenile (GRJ GRS) rkm 522.173'))
 
   obs_code = obs_code_df$code[match(obs_site, obs_code_df$site)]
 
