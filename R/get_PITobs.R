@@ -174,15 +174,6 @@ get_PITobs = function(query_type = c('obs_site', 'release_site'),
     stop
   }
 
-  if(which(parsed[,1]=='tag_id')!=1){
-    # this will properly skip lines if needed.
-    parsed = httr::content(web_req,
-                           'text') %>%
-      read_delim(delim = ',',
-                 col_names = T,
-                 skip = which(parsed[,1]=='tag_id'))
-  }
-
   names(parsed) <- gsub(' ','_',tolower(names(parsed)))
 
   dat <- parsed[!is.na(parsed$tag_id),] # need to remove empty rows with metadata and bottom header row
