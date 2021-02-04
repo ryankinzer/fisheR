@@ -9,7 +9,7 @@
 \usage{
 get_PITobs(
   query_type = c("obs_site", "release_site"),
-  obs_site = c("GRA", "B2A"),
+  obs_site = c("GRA", "B2A", "GRJ"),
   release_site = NULL,
   species = c("Chinook", "Coho", "Steelhead", "Sockeye"),
   run = c("All", "Spring", "Summer", "Fall", "Winter", "Unknown"),

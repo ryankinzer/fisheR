@@ -164,31 +164,38 @@ get_PITobs = function(query_type = c('obs_site', 'release_site'),
   # stringi::stri_enc_detect(content(web_req, "raw"))
 
   # parse the response
-  parsed = httr::content(web_req,
-                         'text') %>%
-    read_delim(delim = ',',
-               col_names = T)
-
-  if(is.null(parsed)) {
-    message(paste('DART returned no data for', species, 'in', spawn_yr, '\n'))
-    stop
-  }
-
-  if(which(parsed[,1]=='tag_id')!=1){
-    # this will properly skip lines if needed.
-    parsed = httr::content(web_req,
-                           'text') %>%
-      read_delim(delim = ',',
-                 col_names = T,
-                 skip = which(parsed[,1]=='tag_id'))
-  }
+  parsed = suppressMessages(
+    suppressWarnings(
+    httr::content(web_req, 'text') %>%
+    read_delim(delim = ',', col_names = T)
+  )
+  )
 
   names(parsed) <- gsub(' ','_',tolower(names(parsed)))
+
+  # if(dim(parsed)[2]==1) {
+  #   message(paste('DART returned no data for', species, 'in', spawn_yr, '\n'))
+  #   stop
+  # }
+
+  if(is.character(as.data.frame(parsed)[,1])){  #any(parsed[,1]=='tag_id'))
+    # this will properly skip lines if needed.
+    parsed = httr::content(web_req,'text') %>%
+      read_delim(delim = ',', col_names = T, skip = which(parsed[,1]=='tag_id'))
+  }
+
+  if(nrow(parsed)>=100000 && query_type=='obs_site'){
+    parsed = parsed %>%
+      mutate(sprrt = paste0(t_species, t_run, t_rear_type)) %>%
+      select(year, tag_file = file_id, nfish = srrt_cnt, tag_id, sprrt, length, mark_site, release_site = rel_site, total_rkm = total_km,
+             release_date = rel_date, obs_site, obs_time, stage, travel_days = tt, min_time, max_time)
+    # change names.
+  }
 
   dat <- parsed[!is.na(parsed$tag_id),] # need to remove empty rows with metadata and bottom header row
   dat <- dat[dat$tag_id != 'Tag ID',]
 
-  # add life stage and filter out juveniles.
+  # add life stage
   dat <- dat %>%
     mutate(
     stage = gsub(' ','',stage),
@@ -224,11 +231,6 @@ get_PITobs = function(query_type = c('obs_site', 'release_site'),
       lubridate::month(release_date) <= 6 ~ 'Spring',
       between(lubridate::month(release_date),7,8) ~ 'Summer',
       lubridate::month(release_date) >= 9 ~ 'Fall',
-      TRUE ~ 'Unknown'
-    ),
-    migration_year = case_when(
-      lubridate::month(release_date) <= 6 ~ as.character(lubridate::year(release_date)),
-      lubridate::month(release_date) >= 7 ~ as.character(lubridate::year(release_date)+1),
       TRUE ~ 'Unknown'
     )
     )
