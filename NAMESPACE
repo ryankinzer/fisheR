@@ -2,5 +2,12 @@
 
 export(get_FINSdata)
 export(get_PITobs)
+export(queryPITtagAdult)
+export(queryPITtagData)
+export(queryRiverData)
+export(queryWindowCnts)
+import(dplyr)
 import(httr)
 import(lubridate)
+import(readr)
+import(tidyr)
