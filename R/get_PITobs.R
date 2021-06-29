@@ -178,7 +178,7 @@ get_PITobs = function(query_type = c('obs_site', 'release_site'),
   #   stop
   # }
 
-  if(is.character(as.data.frame(parsed)[,1])){  #any(parsed[,1]=='tag_id'))
+  if(is.character(as.data.frame(parsed)[,1]) && query_type=='obs_site' && names(parsed)[[1]]!='year'){  #any(parsed[,1]=='tag_id'))
     # this will properly skip lines if needed.
     parsed = httr::content(web_req,'text') %>%
       read_delim(delim = ',', col_names = T, skip = which(parsed[,1]=='tag_id'))
