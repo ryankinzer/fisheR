@@ -8,7 +8,7 @@
 #' @param species Species to query. Possible choices are: Chinook, Coho, Steelhead, Sockeye
 #' @param run Run to query. Possible choices are: All, Spring, Summer, Fall, Winter, Unknown
 #' @param rear_type Rear type to query. Possible choices are: All, W+H, Wild, Hatchery, Unknown
-#' @param life_stage Desired life stage.
+#' @param life_stage Life stage to query. Possible choices are: All, Adult, Juvenile, Unknown
 #' @param start_date Observation start date with format mm/dd/yyyy
 #' @param end_date Observation end date with format mm/dd/yyyy
 #'
@@ -66,23 +66,6 @@ DART_PITdetail_obs = function(obs_site,
 
   # build query for DART
   url_req = 'http://www.cbr.washington.edu/dart/cs/php/rpt/pitall_obs_de.php'
-
-  # https://www.cbr.washington.edu/dart/cs/php/rpt/pitall_obs_de.php?
-  # sc=1
-  # &queryName=pit_obs_de
-  # &outputFormat=default
-  # &year=2022
-  # &proj=LWG%3ALower+Granite+Juvenile+%28GRJ+GRS%29+rkm+522.173
-  # &species=1
-  # &run=1
-  # &rear_type=W
-  # &stage=Null
-  # &span=no
-  # &startdate=1%2F1
-  # &enddate=12%2F31
-  # &syear=2022
-  # &eyear=2022
-  # &summary=no
 
   queryList = list(sc = 1,
                    queryName = 'pit_obs_de',
