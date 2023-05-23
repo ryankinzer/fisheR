@@ -31,7 +31,7 @@ get_USACE_data <- function(query = c('BON.Power.Total.1Hour.1Hour.CBT-RAW',
                            label=NULL) {
 
   # Throw errors
-  {if(is.null(query))stop('A query name must be provided from: https://www.nwd-wc.usace.army.mil/dd/common/dataquery/www/')}
+  {if(is.null(query))stop('A query name must be provided from: https://www.nwd-wc.usace.army.mil/dd/common/dataquery/www/ (Note: Do not include year range)')}
   {if(is.null(startdate) | !grepl('^\\d{2}/\\d{2}/\\d{4}$', startdate))stop("startdate must be provided as MM/DD/YYYY")}
   {if(is.null(enddate) | !grepl('^\\d{2}/\\d{2}/\\d{4}$', enddate))stop("enddate must be provided as MM/DD/YYYY")}
   {if(as.Date(enddate, format = '%m/%d/%Y') < as.Date(startdate, format = '%m/%d/%Y'))stop('startdate must be before enddate')}
