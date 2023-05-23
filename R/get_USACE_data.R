@@ -37,17 +37,17 @@ get_USACE_data <- function(query = c('BON.Power.Total.1Hour.1Hour.CBT-RAW',
   {if(as.Date(enddate, format = '%m/%d/%Y') < as.Date(startdate, format = '%m/%d/%Y'))stop('startdate must be before enddate')}
 
   # calculate backward (1220w2d12h51m)
-  .b_weeks <- as.numeric(difftime(Sys.Date(), as.Date(startdate, format = '%m/%d/%Y'), units = 'weeks'))
+  .b_weeks <- as.numeric(difftime(Sys.time(), as.Date(startdate, format = '%m/%d/%Y'), units = 'weeks'))
   .b_days <- .b_weeks%%1*7
   .b_hours <- .b_days%%1*24
-  .b_mins <- .b_hours%%60
+  .b_mins <- .b_hours%%1*60
   backward <- paste0(trunc(.b_weeks), 'w', trunc(.b_days), 'd', trunc(.b_hours), 'h', trunc(.b_mins), 'm')
 
   # calculate forward (-20w2d12h51m)
-  .f_weeks <- as.numeric(difftime(Sys.Date(), as.Date(enddate, format = '%m/%d/%Y'), units = 'weeks'))
+  .f_weeks <- as.numeric(difftime(Sys.time(), as.Date(enddate, format = '%m/%d/%Y'), units = 'weeks'))
   .f_days <- .f_weeks%%1*7
   .f_hours <- .f_days%%1*24
-  .f_mins <- .f_hours%%60
+  .f_mins <- .f_hours%%1*60
   forward <- paste0('-',trunc(.f_weeks), 'w', trunc(.f_days), 'd', trunc(.f_hours), 'h', trunc(.f_mins), 'm')
 
   # add PST to dates to match 01/01/2000+06:00
