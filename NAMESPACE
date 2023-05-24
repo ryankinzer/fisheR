@@ -2,6 +2,7 @@
 
 export(get_FINSdata)
 export(get_PITobs)
+export(get_USACE_data)
 export(queryPITtagAdult)
 export(queryPITtagData)
 export(queryRiverData)
