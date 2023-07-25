@@ -9,7 +9,7 @@
 #' @param begin_dt Start date for the data returned.
 #' @param end_dt End date for the data returned.
 #'
-#' @import httr, data.table
+#' @import httr data.table
 #' @return data.frame
 #' @export
 #'
