@@ -25,11 +25,11 @@ get_biologic_data <- function(site = NULL,
     if(api_token$expires > Sys.time()){
       token <- api_token$token
     } else {
-      cat("Biologic API token has expired. Please log in again using biologic_login().")
+      cat("Biologic API token has expired. Please log in again using biologic_login().\n")
       return(NULL)
     }
   } else {
-    cat("Biologic API token not found. Please log in first using biologic_login().")
+    cat("Biologic API token not found. Please log in first using biologic_login().\n")
     return(NULL)
   }
 
@@ -51,12 +51,12 @@ get_biologic_data <- function(site = NULL,
                    query = params)
 
   if(req$status_code == 200){
-    cat("Data was downloaded successfully.")
+    cat("Data was downloaded successfully.\n")
     # Extract and process the response data as needed
     data <- httr::content(req)
     dt <- data.table::rbindlist(lapply(data, function(x) data.table::as.data.table(t(unlist(x, recursive = TRUE)))))
     return(dt)
   } else {
-    cat(paste("Unsuccessful -- data requst returned status code:", req$status_code))
+    cat(paste("Unsuccessful -- data requst returned status code:", req$status_code, '\n'))
   }
 }
