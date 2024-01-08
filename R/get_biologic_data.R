@@ -51,7 +51,7 @@ get_biologic_data <- function(site = NULL,
                    query = params)
 
   if(req$status_code == 200){
-    cat("Data was downloaded successfully.\n")
+    cat("Data for", site, "was downloaded successfully.\n")
     # Extract and process the response data as needed
     data <- httr::content(req)
     dt <- data.table::rbindlist(lapply(data, function(x) data.table::as.data.table(t(unlist(x, recursive = TRUE)))))
