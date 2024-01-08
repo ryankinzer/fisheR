@@ -57,6 +57,6 @@ get_biologic_data <- function(site = NULL,
     dt <- data.table::rbindlist(lapply(data, function(x) data.table::as.data.table(t(unlist(x, recursive = TRUE)))))
     return(dt)
   } else {
-    cat(paste("Unsuccessful -- data requst returned status code:", req$status_code, '\n'))
+    cat(paste("Unsuccessful -- data request for", site, "returned status code:", req$status_code, '\n'))
   }
 }
