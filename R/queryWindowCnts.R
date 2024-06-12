@@ -20,15 +20,15 @@
 queryWindowCnts = function(dam = c('LWG', 'WFF', 'BON', 'TDA', 'JDA', 'MCN', 'IHR', 'LMN', 'LGS', 'PRO', 'ROZ', 'PRD', 'WAN', 'RIS', 'TUM', 'RRH', 'WEL', 'ZOS'),
                            spp_code = c('fc', 'fk', 'fb', 'fs', 'fsw', 'fa', 'fcj', 'fkj', 'fbj', 'fsj', 'fl', 'ft'),
                            spawn_yr = NULL,
-                           start_day = c('03/01', '07/01'),
-                           end_day = c('08/17', '06/30')) {
+                           start_day = c('03/01', '07/01', '01/01'),
+                           end_day = c('08/17', '06/30', '12/31')) {
 
   # need a year
   stopifnot(!is.null(spawn_yr))
 
   # pull out default start and end dates
-  #start_day = match.arg(start_day)
-  #end_day = match.arg(end_day)
+  start_day = match.arg(start_day)
+  end_day = match.arg(end_day)
 
   # pull out default dam
   dam = match.arg(dam)
@@ -49,7 +49,7 @@ queryWindowCnts = function(dam = c('LWG', 'WFF', 'BON', 'TDA', 'JDA', 'MCN', 'IH
   ua = httr::user_agent('https://github.com/KevinSee/damEscapement')
 
   # compose url with query
-  url_req = 'http://www.cbr.washington.edu/dart/cs/php/rpt/mg.php'
+  url_req = 'https://www.cbr.washington.edu/dart/cs/php/rpt/mg.php'
 
   # build query list to send to DART
   queryList = list(sc = 1,

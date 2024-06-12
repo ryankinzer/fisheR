@@ -47,7 +47,7 @@ queryPITtagData = function(dam = 'GRA',
   ua = httr::user_agent('https://github.com/KevinSee/damEscapement')
 
   # compose url with query
-  url_req = 'http://www.cbr.washington.edu/dart/cs/php/rpt/pit_adult_window_new.php'
+  url_req = 'https://www.cbr.washington.edu/dart/cs/php/rpt/pit_adult_window_new.php'
 
   # build query for DART
   queryList = list(type = 'tagid',
