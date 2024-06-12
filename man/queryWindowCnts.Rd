@@ -13,8 +13,8 @@ queryWindowCnts(
   spp_code = c("fc", "fk", "fb", "fs", "fsw", "fa", "fcj", "fkj", "fbj", "fsj", "fl",
     "ft"),
   spawn_yr = NULL,
-  start_day = c("03/01", "07/01"),
-  end_day = c("08/17", "06/30")
+  start_day = c("03/01", "07/01", "01/01"),
+  end_day = c("08/17", "06/30", "12/31")
 )
 }
 \arguments{

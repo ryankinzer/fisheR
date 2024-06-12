@@ -3,6 +3,7 @@
 export(biologic_login)
 export(get_FINSdata)
 export(get_PITobs)
+export(get_RMIS_data)
 export(get_USACE_data)
 export(get_biologic_data)
 export(get_biologic_sites)
