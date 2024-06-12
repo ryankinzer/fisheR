@@ -67,7 +67,7 @@ queryWindowCnts = function(dam = c('LWG', 'WFF', 'BON', 'TDA', 'JDA', 'MCN', 'IH
 
   yrList = list(`year[]` = spawn_yr)
 
-  if(grepl('Steelhead', spp_name)) {
+  if(any(grepl('Steelhead', spp_name))) {
     yrList = c(list(`year[]` = spawn_yr - 1),
                yrList)
 
@@ -128,7 +128,7 @@ queryWindowCnts = function(dam = c('LWG', 'WFF', 'BON', 'TDA', 'JDA', 'MCN', 'IH
     tidyr::spread(Species, win_cnt, fill = 0)
 
 
-  if(grepl('Steelhead', spp_name)) {
+  if(any(grepl('Steelhead', spp_name))) {
     win_cnts = win_cnts %>%
       dplyr::filter(Date >= ymd(paste(spawn_yr - 1, start_day)),
              Date <= ymd(paste(spawn_yr, end_day)))
